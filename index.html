@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CLND — a package manager for Windows</title>
+<style>
+  :root {
+    --bg: #0d1117; --panel: #161b22; --line: #30363d;
+    --fg: #e6edf3; --muted: #9198a1; --accent: #4fc3f7; --accent2: #7ee787;
+    --code: #f0f6fc;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background-color: var(--bg);
+    background-image: radial-gradient(1200px 600px at 50% -10%, #10243a 0%, var(--bg) 55%);
+    color: var(--fg); font: 16px/1.6 -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    min-height: 100vh;
+  }
+  .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px 80px; }
+  header { text-align: center; padding: 90px 0 30px; }
+  .logo {
+    font-size: 64px; font-weight: 800; letter-spacing: 4px; margin: 0;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .tag { color: var(--muted); font-size: 20px; margin: 10px 0 0; }
+  .os { display: inline-block; margin-top: 14px; font-size: 13px; color: var(--muted);
+        border: 1px solid var(--line); border-radius: 20px; padding: 4px 12px; }
+  h2 { margin: 48px 0 12px; font-size: 22px; }
+  p { color: #c9d1d9; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; }
+  pre {
+    background: #010409; border: 1px solid var(--line); border-radius: 10px;
+    padding: 14px 16px; overflow-x: auto; margin: 0;
+  }
+  code { font-family: "Cascadia Code", Consolas, ui-monospace, monospace; font-size: 14px; color: var(--code); }
+  .cmd .p { color: var(--accent2); }         /* prompt / command */
+  .cmd .c { color: var(--muted); }           /* comment */
+  .btns { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 26px; }
+  .btn {
+    display: inline-block; text-decoration: none; font-weight: 600; border-radius: 10px;
+    padding: 12px 22px; border: 1px solid var(--line);
+  }
+  .btn.primary { background: var(--accent); color: #04121c; border-color: transparent; }
+  .btn.ghost { color: var(--fg); background: #1c2230; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+  .feat h3 { margin: 0 0 4px; font-size: 16px; }
+  .feat p { margin: 0; color: var(--muted); font-size: 14px; }
+  footer { text-align: center; color: var(--muted); font-size: 13px; margin-top: 60px; }
+  a { color: var(--accent); }
+  .ver { color: var(--accent2); font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1 class="logo">CLND</h1>
+    <p class="tag">Command-Line Native Distributor — a package manager for Windows</p>
+    <div class="os">🪟 Windows 10 / 11 · 64-bit</div>
+    <div class="btns">
+      <a class="btn primary" href="clnd.exe" download>Download clnd.exe</a>
+      <a class="btn ghost" href="#install">Install with one line</a>
+    </div>
+  </header>
+
+  <h2 id="install">Install</h2>
+  <p>Open <b>PowerShell</b> and paste this one line — it downloads CLND and adds it to your PATH:</p>
+  <pre class="cmd"><code><span class="p">irm https://markabrazuk336-maker.github.io/clnd/install.ps1 | iex</span></code></pre>
+  <p style="color:var(--muted);font-size:14px">Then open a new terminal and run <code>clnd update</code>.</p>
+
+  <h2>Use it</h2>
+  <div class="card">
+<pre class="cmd"><code><span class="c">:: get the catalog (1600+ programs)</span>
+<span class="p">clnd update</span>
+<span class="c">:: search and install</span>
+<span class="p">clnd search ripgrep</span>
+<span class="p">clnd install ripgrep</span>
+<span class="c">:: keep everything current</span>
+<span class="p">clnd upgrade --all</span>
+<span class="c">:: update clnd itself</span>
+<span class="p">clnd up</span></code></pre>
+  </div>
+
+  <h2>What it does</h2>
+  <div class="grid">
+    <div class="card feat"><h3>🔎 One catalog</h3><p>Search and install from the same package catalog as Scoop — thousands of tools.</p></div>
+    <div class="card feat"><h3>⚡ Portable installs</h3><p>Apps go in your user folder, with shims on PATH. No admin, no clutter.</p></div>
+    <div class="card feat"><h3>⬆️ Self-updating</h3><p><code>clnd up</code> updates the tool itself from this page — like brew upgrade.</p></div>
+    <div class="card feat"><h3>🔒 Sealed updates</h3><p>Updates ship as encrypted <code>.tju</code> files that are rejected if tampered with.</p></div>
+  </div>
+
+  <h2>Downloads</h2>
+  <div class="card">
+    <p>Latest version: <span class="ver" id="ver">…</span></p>
+    <p><a href="clnd.exe" download>clnd.exe</a> — the program &nbsp;·&nbsp; <a href="version.json">version.json</a> — what <code>clnd up</code> reads</p>
+  </div>
+
+  <footer>
+    CLND · made for fun · Windows package manager<br>
+    Updates are served as static files; the source code is not published here.
+  </footer>
+</div>
+<script>
+  // show the current version from version.json, if reachable
+  fetch('version.json').then(r => r.json()).then(m => {
+    if (m && m.version) document.getElementById('ver').textContent = m.version;
+  }).catch(() => { document.getElementById('ver').textContent = 'see version.json'; });
+</script>
+</body>
+</html>

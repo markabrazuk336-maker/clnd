@@ -1,0 +1,20 @@
+{
+  "name": "7zip",
+  "version": "26.02",
+  "description": "A multi-format file archiver with high compression ratios",
+  "homepage": "https://www.7-zip.org",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/ip7z/7zip/releases/download/26.02/7z2602-x64.msi",
+      "hash": "sha256:db407a4f6d4999e5c7bc00ce8a882be94717b56e7fa68140fe3f12605d91643e",
+      "extract_dir": "Files\\7-Zip",
+      "bin": ["7z.exe", "7zG.exe", "7zFM.exe"]
+    },
+    "32bit": {
+      "url": "https://github.com/ip7z/7zip/releases/download/26.02/7z2602.msi",
+      "hash": "sha256:55171bb369d0375ae0e6e8f6cccfffb112c8b13e5c991c4d1f6b21ad968c1af0",
+      "extract_dir": "Files\\7-Zip",
+      "bin": ["7z.exe", "7zG.exe", "7zFM.exe"]
+    }
+  }
+}
