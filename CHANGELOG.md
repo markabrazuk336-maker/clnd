@@ -2,6 +2,13 @@
 
 What changed in each version of CLND. Update with `clnd up`.
 
+## 0.9.0 — 2026-09-25
+
+- Tab completion in PowerShell: commands, package names, versions (`jq@<Tab>`),
+  installed packages, sources and flags. Turn it on with `clnd completion --install`.
+- `clnd install discord` no longer just says "not found": CLND checks the other
+  known sources, finds it in `extras`, and offers to add that source and install.
+
 ## 0.8.1 — 2026-09-25
 
 - Fixed: `clnd rollback` failed with "kept version is incomplete" for versions
