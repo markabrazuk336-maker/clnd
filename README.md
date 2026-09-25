@@ -29,6 +29,8 @@ clnd up                # update clnd itself
 
 - **1600+ packages** — reads the Scoop `main` bucket out of the box; add more with `clnd source add extras`.
 - **Find by command** — `clnd install rg` knows you mean `ripgrep`; typos get a "Did you mean".
+- **Finds it in other sources** — `clnd install discord` sees that Discord is in the `extras` source and offers to add it.
+- **Tab completion** in PowerShell — commands, package names, versions (`jq@<Tab>`) and flags.
 - **Upgrade and roll back** — `clnd upgrade --all`, pin a package to keep it, `clnd rollback` to go back a version.
 - **Silent installers** — `.msi`, Inno Setup and other setup programs install without clicking through.
 - **Move to a new PC** — `clnd export` your apps, `clnd import` them on the other machine.
@@ -57,6 +59,7 @@ clnd up                # update clnd itself
 | `clnd source add <name> [url]` | Add a source (`extras`, `games`, `java`... or a GitHub repo) |
 | `clnd source remove <name>` | Remove a source |
 | `clnd doctor [--fix]` | Check install health (PATH, folders) |
+| `clnd completion [--install\|--remove]` | Turn Tab completion in PowerShell on or off (no flag: print the script) |
 | `clnd about` | Show the CLND banner |
 | `clnd version` | Print the CLND version |
 | `clnd help` | Show all commands |
@@ -71,6 +74,19 @@ clnd upgrade --all
 clnd export my-apps.json
 clnd source add games
 ```
+
+## Tab completion
+
+```powershell
+clnd completion --install
+```
+
+Open a new PowerShell window and press Tab: `clnd ins<Tab>` → `install`,
+`clnd install rip<Tab>` → `ripgrep`, `clnd install jq@<Tab>` → available versions.
+
+If CLND says PowerShell does not run profile scripts on your PC, allow your own
+scripts once with `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` and open a new window.
+`clnd completion --remove` turns completion off again.
 
 ## Found a bug?
 
